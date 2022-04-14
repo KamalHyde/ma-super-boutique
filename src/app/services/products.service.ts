@@ -24,4 +24,10 @@ export class ProductsService {
     let available = product.available;
     return this.http.patch("http://localhost:3000/products/" + product.id, {available: !available});
   }
+
+  filterPriceFromService(priceForm: any) {
+    let min = priceForm.value.pricemin;
+    let max = priceForm.value.pricemax;
+    return this.http.get("http://localhost:3000/products?price_gte=" + min + "&price_lte=" + max);
+  }
 }

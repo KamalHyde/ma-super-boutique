@@ -34,7 +34,13 @@ export class ProductsComponent implements OnInit {
   availabilityFromProducts(product: any) {
     this.productsServices.availabilityFromService(product).subscribe(() => {
       this.getProductsFromProducts();
+    }) 
+  }
+
+  filterPriceFromProducts(priceForm: any) {
+    this.productsServices.filterPriceFromService(priceForm).subscribe(data => {
+      this.products = data;
     })
-    
+
   }
 }

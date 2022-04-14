@@ -11,16 +11,16 @@
         <div class="col-6">
             <h6 class="text-info text-center"> Chercher par prix</h6>
             <!--*******Début du formulaire chercher par prix*******-->
-            <form>
+            <form (ngSubmit)="filterPriceFromProducts(priceForm)" #priceForm="ngForm">
                 <div class="row">
                     <div class="col-4">
                         <div class="mb-3">
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" name="pricemin" ngModel>
                           </div>
                     </div>
                     <div class="col-4">
                         <div class="mb-3">
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" name="pricemax" ngModel>
                           </div>
                     </div>
                     <div class="col-4">
@@ -41,7 +41,8 @@
                             </div>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn btn-primary">Filtrer</button>
+                        <button type="submit" class="btn btn-primary"
+                        >Filtrer</button>
                     </div>
                 </div>
             </form>
@@ -76,8 +77,6 @@
                 
                 
             </div>
-
-            
 
         </div>
 
