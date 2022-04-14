@@ -1,0 +1,86 @@
+
+<div class="container">
+    <h1 class="text-center text-warning mt-4 mb-4">Liste des mes produits : {{products.length}}</h1>
+
+    <!-- <div *ngFor="let product of products">
+        <p>
+            {{product.title}}
+        </p>
+    </div> -->
+    <div class="row">
+        <div class="col-6">
+            <h6 class="text-info text-center"> Chercher par prix</h6>
+            <!--*******Début du formulaire chercher par prix*******-->
+            <form>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <input type="number" class="form-control">
+                          </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <input type="number" class="form-control">
+                          </div>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary">Filtrer</button>
+                    </div>
+                </div>
+              </form>
+            <!--***** Fin formulaire chercher par prix***** -->
+        </div>
+        <div class="col-6">
+            <h6 class="text-info text-center"> Chercher par mots clés</h6>
+            <!--*******Début du formulaire filter par mots clés*******-->
+            <form>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <input type="text" class="form-control">
+                            </div>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary">Filtrer</button>
+                    </div>
+                </div>
+            </form>
+            <!--***** Fin formulaire filter par mots clés***** -->
+        </div>
+    </div>
+
+    <section class="row mt-4">
+        <div class="text-center mt-4 mb-4 pt-4 pb-4 bg-success" *ngIf="showProduct">Le produit est supprimé</div>
+
+        <div class="col-4" *ngFor="let product of products">
+            <img src="{{product.image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+
+                <h5 class="card-title">{{product.title}}</h5>
+                <p class="card-text">{{product.description}}</p>
+                
+                <div class="row">
+                    <div class="col-4">
+                        <i class= "fa-solid fs-2" 
+                        [ngClass]="{'text-success fa-thumbs-up': product.available, 'text-danger fa-thumbs-down': !product.available}"
+                        (click)="availabilityFromProducts(product)">
+                        </i>
+                    </div>
+                    <div class="col-4">
+                        <a href="#" class="btn btn-primary">{{product.price}} €</a>
+                    </div>
+                    <div class="col-4">
+                        <button (click)="deleteProductFromProducts(product.id)">Delete</button>
+                    </div>
+                </div>
+                
+                
+            </div>
+
+            
+
+        </div>
+
+    </section>
+
+</div>
