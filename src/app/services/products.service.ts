@@ -30,4 +30,9 @@ export class ProductsService {
     let max = priceForm.value.pricemax;
     return this.http.get("http://localhost:3000/products?price_gte=" + min + "&price_lte=" + max);
   }
+
+  filterMotsClesFromService(motsClesForm: any) {
+    let mots = motsClesForm.value.motscles;
+    return this.http.get("http://localhost:3000/products?q=" + mots);
+  }
 }

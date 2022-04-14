@@ -41,6 +41,12 @@ export class ProductsComponent implements OnInit {
     this.productsServices.filterPriceFromService(priceForm).subscribe(data => {
       this.products = data;
     })
-
   }
+
+  filterMotsClesFromProducts(motsclesForm: any) {
+    this.productsServices.filterMotsClesFromService(motsclesForm).subscribe(data => {
+      this.products = data;
+    })
+  }
+
 }
