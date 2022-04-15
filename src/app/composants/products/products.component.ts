@@ -16,7 +16,7 @@ export class ProductsComponent implements OnInit {
     image: "",
     price: ""
   };
-  isAuth = this.productsServices.isAuthotified;
+  isAuth = this.productsServices.isAuthentificated;
 
   constructor(private productsServices: ProductsService) { }
 

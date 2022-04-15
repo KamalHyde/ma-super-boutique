@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   login(loginForm: any) {
     if (loginForm.value.username == this.username && loginForm.value.password == this.password) {
-      this.ps.isAuthotified = true;
+      this.ps.isAuthentificated = true;
       this.router.navigate(["products"]);
     } else {
       this.message = true;
