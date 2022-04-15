@@ -1,85 +1,131 @@
-
 <div class="container">
-    <h1 class="text-center text-warning mt-4 mb-4">Liste des mes produits : {{products.length}}</h1>
+  <h1 class="text-center text-warning mt-4 mb-4">Liste des mes produits : {{products.length}}</h1>
 
-    <!-- <div *ngFor="let product of products">
+  <!-- <div *ngFor="let product of products">
         <p>
             {{product.title}}
         </p>
     </div> -->
-    <div class="row">
-        <div class="col-6">
-            <h6 class="text-info text-center"> Chercher par prix</h6>
-            <!--*******Début du formulaire chercher par prix*******-->
-            <form (ngSubmit)="filterPriceFromProducts(priceForm)" #priceForm="ngForm">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="mb-3">
-                            <input type="number" class="form-control" name="pricemin" ngModel>
-                          </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="mb-3">
-                            <input type="number" class="form-control" name="pricemax" ngModel>
-                          </div>
-                    </div>
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary">Filtrer</button>
-                    </div>
-                </div>
-              </form>
-            <!--***** Fin formulaire chercher par prix***** -->
+  <div class="row">
+    <div class="col-6">
+      <h6 class="text-info text-center"> Chercher par prix</h6>
+      <!--*******Début du formulaire chercher par prix*******-->
+      <form (ngSubmit)="filterPriceFromProducts(priceForm)" #priceForm="ngForm">
+        <div class="row">
+          <div class="col-4">
+            <div class="mb-3">
+              <input type="number" class="form-control" name="pricemin" ngModel>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="mb-3">
+              <input type="number" class="form-control" name="pricemax" ngModel>
+            </div>
+          </div>
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary">Filtrer</button>
+          </div>
         </div>
-        <div class="col-6">
-            <h6 class="text-info text-center"> Chercher par mots clés</h6>
-            <!--*******Début du formulaire filter par mots clés*******-->
-            <form (ngSubmit)="filterMotsClesFromProducts(motsclesForm)" #motsclesForm="ngForm">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" name="motscles" ngModel>
-                            </div>
-                    </div>
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-primary"
-                        >Filtrer</button>
-                    </div>
-                </div>
-            </form>
-            <!--***** Fin formulaire filter par mots clés***** -->
-        </div>
+      </form>
+      <!--***** Fin formulaire chercher par prix***** -->
     </div>
+    <div class="col-6">
+      <h6 class="text-info text-center"> Chercher par mots clés</h6>
+      <!--*******Début du formulaire filter par mots clés*******-->
+      <form (ngSubmit)="filterMotsClesFromProducts(motsclesForm)" #motsclesForm="ngForm">
+        <div class="row">
+          <div class="col-6">
+            <div class="mb-3">
+              <input type="text" class="form-control" name="motscles" ngModel>
+            </div>
+          </div>
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary">Filtrer</button>
+          </div>
+        </div>
+      </form>
+      <!--***** Fin formulaire filter par mots clés***** -->
+    </div>
+  </div>
 
-    <section class="row mt-4">
-        <div class="text-center mt-4 mb-4 pt-4 pb-4 bg-success" *ngIf="showProduct">Le produit est supprimé</div>
+  <section class="row mt-4">
+    <div class="text-center mt-4 mb-4 pt-4 pb-4 bg-success" *ngIf="showProduct">Le produit est supprimé</div>
 
-        <div class="col-4" *ngFor="let product of products">
-            <img src="{{product.image}}" class="card-img-top" alt="...">
-            <div class="card-body">
+    <div class="col-4" *ngFor="let product of products">
+        <img src="{{product.image}}" class="card-img-top" alt="...">
+        <div class="card-body">
 
-                <h5 class="card-title">{{product.title}}</h5>
-                <p class="card-text">{{product.description}}</p>
-                
-                <div class="row">
-                    <div class="col-4">
-                        <i class= "fa-solid fs-2" 
-                        [ngClass]="{'text-success fa-thumbs-up': product.available, 'text-danger fa-thumbs-down': !product.available}"
-                        (click)="availabilityFromProducts(product)">
-                        </i>
-                    </div>
-                    <div class="col-4">
-                        <a href="#" class="btn btn-primary">{{product.price}} €</a>
-                    </div>
-                    <div class="col-4">
-                        <button (click)="deleteProductFromProducts(product.id)">Delete</button>
-                    </div>
-                </div>
-                
-                
+            <h5 class="card-title">{{product.title}}</h5>
+            <p class="card-text">{{product.description}}</p>
+
+        <div class="row">
+            <div class="col-4">
+                <i class="fa-solid fs-2"
+                    [ngClass]="{'text-success fa-thumbs-up': product.available, 'text-danger fa-thumbs-down': !product.available}"
+                    (click)="availabilityFromProducts(product)">
+                </i>
+            </div>
+            <div class="col-4">
+                <a href="#" class="btn btn-primary">{{product.price}} €</a>
+            </div>
+            <div class="col-4">
+                <button (click)="deleteProductFromProducts(product.id)">Delete</button>
             </div>
 
+            <!-- Button trigger modal -->
+            <button (click)="editProduct(product)" type="button" class="btn btn-primary" data-toggle="modal"
+            data-target="#exampleModal">
+            Modifier
+            </button>
+            <!-- ******************Début pop-up ******************-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modification du produit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- ******Début formulaire Modification produit****** -->
+                    <form (ngSubmit)="updateProductFromProduct(updatedProduct)" #updatedProduct="ngForm">
+                        <div class="form-group">
+                            <label>Nom de votre produit</label>
+                            <input type="text" class="form-control" name="title" [(ngModel)]="modifiedProduct.title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description du produit</label>
+                            <input type="text" class="form-control" name="description" [(ngModel)]="modifiedProduct.description" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Image du produit</label>
+                            <input type="text" class="form-control" name="image" [(ngModel)]="modifiedProduct.image" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Prix</label>
+                            <input type="number" class="form-control" name="price" [(ngModel)]="modifiedProduct.price" required>
+                        </div>
+
+                        <button data-dismiss="modal">Valider</button>
+                    </form>
+                    <!-- ******Fin formulaire modification produit******* -->
+                </div>
+                </div>
+            </div>
+            </div>
+            <!-- ******************Fin de fenêtre pop-up***************** -->
         </div>
 
-    </section>
+      </div>
+
+ 
+    </div>
+
+
+
+
+  </section>
 
 </div>

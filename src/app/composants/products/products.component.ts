@@ -10,6 +10,12 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductsComponent implements OnInit {
   products:any;
   showProduct: boolean = false;
+  modifiedProduct= {
+    title: "",
+    description: "",
+    image: "",
+    price: ""
+  };
 
   constructor(private productsServices: ProductsService) { }
 
@@ -49,4 +55,13 @@ export class ProductsComponent implements OnInit {
     })
   }
 
+  editProduct(product: any) {
+      this.modifiedProduct = product;
+  }
+
+  updateProductFromProduct(formData: any) {
+    formData = this.modifiedProduct;
+    this.productsServices.updateProductFromService(formData).subscribe(
+    )
+  }
 }

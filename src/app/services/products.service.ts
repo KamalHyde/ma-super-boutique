@@ -35,4 +35,13 @@ export class ProductsService {
     let mots = motsClesForm.value.motscles;
     return this.http.get("http://localhost:3000/products?q=" + mots);
   }
+
+  editProductFromService(id: any) {
+    return this.http.get("http://localhost:3000/products/" + id);
+  }
+
+  updateProductFromService(product: any) {
+    return this.http.put("http://localhost:3000/products/"+ product.id, product)
+
+  }
 }
