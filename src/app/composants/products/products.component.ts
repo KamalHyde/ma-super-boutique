@@ -59,9 +59,7 @@ export class ProductsComponent implements OnInit {
       this.modifiedProduct = product;
   }
 
-  updateProductFromProduct(formData: any) {
-    formData = this.modifiedProduct;
-    this.productsServices.updateProductFromService(formData).subscribe(
-    )
+  updateProductFromProduct() {
+    this.productsServices.updateProductFromService(this.modifiedProduct).subscribe();
   }
 }

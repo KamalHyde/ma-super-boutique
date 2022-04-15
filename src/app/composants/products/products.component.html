@@ -58,67 +58,67 @@
             <h5 class="card-title">{{product.title}}</h5>
             <p class="card-text">{{product.description}}</p>
 
-        <div class="row">
-            <div class="col-4">
-                <i class="fa-solid fs-2"
-                    [ngClass]="{'text-success fa-thumbs-up': product.available, 'text-danger fa-thumbs-down': !product.available}"
-                    (click)="availabilityFromProducts(product)">
-                </i>
-            </div>
-            <div class="col-4">
-                <a href="#" class="btn btn-primary">{{product.price}} €</a>
-            </div>
-            <div class="col-4">
-                <button (click)="deleteProductFromProducts(product.id)">Delete</button>
+            <div class="row">
+                <div class="col-4">
+                    <i class="fa-solid fs-2"
+                        [ngClass]="{'text-success fa-thumbs-up': product.available, 'text-danger fa-thumbs-down': !product.available}"
+                        (click)="availabilityFromProducts(product)">
+                    </i>
+                </div>
+                <div class="col-4">
+                    <a href="#" class="btn btn-primary">{{product.price}} €</a>
+                </div>
+                <div class="col-4">
+                    <button (click)="deleteProductFromProducts(product.id)">Delete</button>
+                </div>
+
+                <!-- Button trigger modal -->
+                <button (click)="editProduct(product)" type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#exampleModal">
+                Modifier
+                </button>
+                <!-- ******************Début pop-up ******************-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modification du produit</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- ******Début formulaire Modification produit****** -->
+                        <form>
+                            <div class="form-group">
+                                <label>Nom de votre produit</label>
+                                <input type="text" class="form-control" name="title" [(ngModel)]="modifiedProduct.title" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Description du produit</label>
+                                <input type="text" class="form-control" name="description" [(ngModel)]="modifiedProduct.description" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Image du produit</label>
+                                <input type="text" class="form-control" name="image" [(ngModel)]="modifiedProduct.image" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Prix</label>
+                                <input type="number" class="form-control" name="price" [(ngModel)]="modifiedProduct.price" required>
+                            </div>
+
+                            <button (click)="updateProductFromProduct()" data-dismiss="modal">Valider</button>
+                        </form>
+                        <!-- ******Fin formulaire modification produit******* -->
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <!-- ******************Fin de fenêtre pop-up***************** -->
             </div>
 
-            <!-- Button trigger modal -->
-            <button (click)="editProduct(product)" type="button" class="btn btn-primary" data-toggle="modal"
-            data-target="#exampleModal">
-            Modifier
-            </button>
-            <!-- ******************Début pop-up ******************-->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modification du produit</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- ******Début formulaire Modification produit****** -->
-                    <form (ngSubmit)="updateProductFromProduct(updatedProduct)" #updatedProduct="ngForm">
-                        <div class="form-group">
-                            <label>Nom de votre produit</label>
-                            <input type="text" class="form-control" name="title" [(ngModel)]="modifiedProduct.title" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Description du produit</label>
-                            <input type="text" class="form-control" name="description" [(ngModel)]="modifiedProduct.description" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Image du produit</label>
-                            <input type="text" class="form-control" name="image" [(ngModel)]="modifiedProduct.image" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Prix</label>
-                            <input type="number" class="form-control" name="price" [(ngModel)]="modifiedProduct.price" required>
-                        </div>
-
-                        <button data-dismiss="modal">Valider</button>
-                    </form>
-                    <!-- ******Fin formulaire modification produit******* -->
-                </div>
-                </div>
-            </div>
-            </div>
-            <!-- ******************Fin de fenêtre pop-up***************** -->
         </div>
-
-      </div>
 
  
     </div>
