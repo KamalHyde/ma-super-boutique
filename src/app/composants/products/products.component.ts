@@ -16,11 +16,14 @@ export class ProductsComponent implements OnInit {
     image: "",
     price: ""
   };
+  isAuth = this.productsServices.isAuthotified;
 
   constructor(private productsServices: ProductsService) { }
 
   ngOnInit(): void {
+    this.isAuth;
     this.getProductsFromProducts();
+
   }
 
   getProductsFromProducts() {
